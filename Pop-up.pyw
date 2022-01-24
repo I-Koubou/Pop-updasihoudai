@@ -44,10 +44,10 @@ cols = [
 
 
 layout = [
-    [sg.Text("タイトルとメッセージに記入して実行を押すとポップアップが出ます",font=('UD デジタル 教科書体 N-R',10)),sg.MenuBar([['メニュー',['これについて','これのgithub','I工房ブログ','---','おしまい']]], key='menu')],
+    [sg.Text("タイトルとメッセージに記入して実行を押すとポップアップが出ます",font=('UD デジタル 教科書体 N-R',10)),sg.MenuBar([['メニュー',['これについて','これのgithub','バージョン情報','---','終了']]], key='menu')],
 [sg.Column(cols, scrollable=True , vertical_scroll_only=True)],]
 
-window = sg.Window('ポップアップ出し放題 1.0.0', layout,)
+window = sg.Window('ポップアップ出し放題', layout,)
 while True:  # Event Loop
     event, values = window.Read()
 
@@ -72,9 +72,15 @@ while True:  # Event Loop
     if event == "st7":
        messagebox.askretrycancel(values["txtt7"],values["txth7"])
 
-    if event is None or event == 'Exit'or values['menu']=='おしまい':
+    if event is None or event == 'Exit'or values['menu']=='終了':
         break
 
-    if event == values['menu']=='I工房ブログ':
-        webbrowser.open("https://istudio2628.wordpress.com/")
+    if event == values['menu']=='これについて':
+        webbrowser.open("https://istudio2628.wordpress.com/2022/01/24/pop-up/")
+
+    if event == values['menu']=='これのgithub':
+        webbrowser.open("https://github.com/I-Koubou/Pop-updasihoudai")
+
+    if event == values['menu']=='バージョン情報':
+        sg.popup('バージョン:1.0.1\n')
 window.Close()
